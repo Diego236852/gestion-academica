@@ -1,5 +1,12 @@
+import { StatusBar } from 'expo-status-bar';
+
 import AppNavigator from './navigation/AppNavigator';
 
 export default function Layout() {
-  return <AppNavigator />;
+  return (
+    <>
+      <AppNavigator />
+      <StatusBar style='dark' />
+    </>
+  )
 }
