@@ -12,51 +12,66 @@ const ClassroomScreen = () => {
   const [currentGrade, setCurrentGrade] = useState(0);
   const [selectedClassrooms, setSelectedClassrooms] = useState<string[]>([]);
 
-  const { width } = useWindowDimensions();
+  const { width, height } = useWindowDimensions();
+  const isPortrait = height >= width;
 
-  const grades = ["Primaria", "Secundaria", "Preescolar"];
+  const grades = ["Preescolar", "Primaria", "Secundaria"];
 
   const classrooms = [
-    ["1er A", "1er B", "1er C", "2do A", "2do B", "2do C", "3er A", "3er B", "3er C"],
-    ["4to A", "4to B", "4to C", "5to A", "5to B", "5to C", "6to A", "6to B", "6to C"],
+    ["1er Nivel A", "2do Nivel B", "3er Nivel C"],
+    ["1er A", "1er B", "1er C", "2do A", "2do B", "2do C", "3er A", "3er B", "3er C",
+     "4to A", "4to B", "4to C", "5to A", "5to B", "5to C", "6to A", "6to B", "6to C"],
+    ["7mo A", "7mo B", "7mo C", "8vo A", "8vo B", "8vo C", "9no A", "9no B", "9no C", 
+     "10mo A", "10mo B", "10mo C", "11mo A", "11mo B", "11mo C"],
   ];
 
   const handleNextPage = () => {
-    if (currentGrade < classrooms.length - 1) {
-      setCurrentGrade(currentGrade + 1);
-    }
+    setCurrentGrade((prevGrade) => (prevGrade + 1) % classrooms.length);
   };
 
   const handlePrevPage = () => {
-    if (currentGrade > 0) {
-      setCurrentGrade(currentGrade - 1);
-    }
+    setCurrentGrade((prevGrade) => (prevGrade - 1 + classrooms.length) % classrooms.length);
   };
 
   const toggleSelection = (classroom: string) => {
-    if (selectedClassrooms.includes(classroom)) {
-      setSelectedClassrooms(selectedClassrooms.filter(item => item !== classroom));
-    } else {
-      setSelectedClassrooms([...selectedClassrooms, classroom]);
-    }
+    setSelectedClassrooms((prev) =>
+      prev.includes(classroom)
+        ? prev.filter(item => item !== classroom)
+        : [...prev, classroom]
+    );
   };
 
-  const classroomBoxSize = width / 3.5; // se ajusta a 3 columnas con margen
+  const getColumns = () => {
+    if (width < 350) return 2;
+    if (width < 600) return 3;
+    return 4;
+  };
+
+  const columns = getColumns();
+  const sidePadding = 20; // espacio a la izquierda y derecha
+  const gap = 12; // espacio entre celdas
+  const classroomBoxSize = (width - sidePadding * 2 - gap * (columns - 1)) / columns;
 
   return (
     <View style={styles.container}>
-      {/* Header */}
       <View style={styles.header}>
-        <Text style={styles.schoolLevel}>Primaria</Text>
+        <Text style={styles.schoolLevel}>{grades[currentGrade]}</Text>
         <Text style={styles.teacherInfo}>Xdo - Xdo Grado</Text>
       </View>
 
-      {/* Classrooms */}
       <FlatList
         data={classrooms[currentGrade]}
         keyExtractor={(item, index) => index.toString()}
-        numColumns={3}
-        contentContainerStyle={styles.classroomList}
+        numColumns={columns}
+        key={columns}
+        contentContainerStyle={{
+          paddingHorizontal: sidePadding,
+          justifyContent: isPortrait ? 'center' : 'flex-start',
+        }}
+        columnWrapperStyle={{
+          justifyContent: isPortrait ? 'center' : 'space-between',
+          marginBottom: gap,
+        }}
         renderItem={({ item }) => {
           const isSelected = selectedClassrooms.includes(item);
           return (
@@ -78,7 +93,6 @@ const ClassroomScreen = () => {
         }}
       />
 
-      {/* Pagination */}
       <View style={styles.pagination}>
         <TouchableOpacity onPress={handlePrevPage} style={styles.arrowButton}>
           <Text style={styles.arrowText}>{'<'}</Text>
@@ -115,15 +129,10 @@ const styles = StyleSheet.create({
     color: '#333',
     alignSelf: 'flex-end',
   },
-  classroomList: {
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
   classroom: {
     backgroundColor: '#fff',
     borderWidth: 1,
     borderColor: '#ccc',
-    margin: 10,
     borderRadius: 16,
     alignItems: 'center',
     justifyContent: 'center',
