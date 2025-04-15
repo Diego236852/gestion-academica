@@ -15,7 +15,7 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
 
   const handleLogin = () => {
     if (username && pin) {
-      navigation.navigate('Classrooms');
+      navigation.navigate('DirectorMenu');
     } else {
       alert('Por favor, ingrese el usuario y el PIN');
     }
