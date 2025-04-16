@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { View, StyleSheet } from 'react-native';
 import Animated, {
   useSharedValue,
@@ -6,8 +6,10 @@ import Animated, {
   withTiming,
   Easing,
 } from 'react-native-reanimated';
+
 import { useNavigation } from '@react-navigation/native';
 
+// Componente SplashScreen
 const SplashScreen = () => {
   const navigation = useNavigation<any>(); // Tipo relajado para evitar errores de TS
 
@@ -57,6 +59,7 @@ const SplashScreen = () => {
 
 export default SplashScreen;
 
+// Estilos
 const styles = StyleSheet.create({
   container: {
     flex: 1,
