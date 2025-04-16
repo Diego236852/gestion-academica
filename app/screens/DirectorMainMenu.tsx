@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { RootStackParamList } from '../types/navigation'; // Asegúrate de tener el tipo importado
+import { RootStackParamList } from '../types/navigation';
 
 type DirectorMainMenuNavigationProp = NativeStackNavigationProp<RootStackParamList, 'DirectorMenu'>;
 
@@ -23,7 +23,7 @@ const DirectorMainMenu: React.FC<Props> = ({ navigation }) => {
 
       <TouchableOpacity
         style={styles.button}
-        onPress={() => navigation.navigate('Login')}
+        onPress={() => navigation.navigate('TeachersData')}  // Navega a TeachersDataScreen
       >
         <Text style={styles.buttonText}>➕ Añadir Maestro</Text>
       </TouchableOpacity>
@@ -34,17 +34,23 @@ const DirectorMainMenu: React.FC<Props> = ({ navigation }) => {
       >
         <Text style={styles.logoutText}>🚪 Cerrar Sesión</Text>
       </TouchableOpacity>
+
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => navigation.navigate('OptionsScreen')}
+      >
+        <Text style={styles.buttonText}>Opciones</Text>
+      </TouchableOpacity>
     </View>
   );
 };
 
 export default DirectorMainMenu;
 
-
 const styles = StyleSheet.create({
   background: {
     flex: 1,
-    backgroundColor: '#f0f4f8', // Fondo simple sin usar expo-linear-gradient
+    backgroundColor: '#f0f4f8',
   },
   container: {
     flex: 1,
@@ -65,7 +71,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   button: {
-    backgroundColor: '#2563EB', // Color de fondo de los botones
+    backgroundColor: '#2563EB',
     paddingVertical: 18,
     paddingHorizontal: 28,
     borderRadius: 16,
@@ -80,7 +86,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   logoutButton: {
-    backgroundColor: '#EF4444', // Botón de cerrar sesión con fondo rojo
+    backgroundColor: '#EF4444',
   },
   buttonText: {
     color: '#FFFFFF',
