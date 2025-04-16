@@ -25,8 +25,10 @@ export default function ClassroomScreen() {
   
   const isPortrait = height >= width;
 
+  // Los grados posibles
   const grades = ['Preescolar', 'Primaria', 'Secundaria'];
 
+  // Todas las aulas posibles
   const classrooms = [
     ['1er Nivel A', '2do Nivel B', '3er Nivel C'],
     [
@@ -50,6 +52,7 @@ export default function ClassroomScreen() {
     setCurrentGrade((prevGrade) => (prevGrade - 1 + classrooms.length) % classrooms.length);
   };
 
+  // Ir al aula seleccionada
   const handleClassroomPress = (classroom: string) => {
     navigation.navigate('ClassesAssigned', { classroom });
   };
@@ -70,11 +73,13 @@ export default function ClassroomScreen() {
   
   return (
     <View style={styles.container}>
+      {/* Cabecera */}
       <View style={styles.header}>
         <Text style={styles.schoolLevel}>{grades[currentGrade]}</Text>
         <Text style={styles.teacherInfo}>Xdo - Xdo Grado</Text>
       </View>
 
+      {/* La lista de todas las aulas */}
       <FlatList
         data={classrooms[currentGrade]}
         keyExtractor={(item, index) => index.toString()}
@@ -84,14 +89,15 @@ export default function ClassroomScreen() {
           paddingHorizontal: sidePadding,
           justifyContent: isPortrait ? 'center' : 'flex-start',
         }}
+        
         columnWrapperStyle={
-          columns > 1
-            ? {
-                justifyContent: isPortrait ? 'center' : 'space-between',
-                marginBottom: gap,
-              }
-            : undefined
+          columns > 1 && {
+            justifyContent: isPortrait ? 'center' : 'space-between',
+            marginBottom: gap,
+          }
         }
+        
+        // Cada uno de las aulas
         renderItem={({ item }) => (
           <TouchableOpacity
             style={[
@@ -110,6 +116,7 @@ export default function ClassroomScreen() {
         )}
       />
 
+      {/* Controles para navegacion */}
       <View style={styles.pagination}>
         <TouchableOpacity onPress={handlePrevPage} style={styles.arrowButton}>
           <Text style={styles.arrowText}>{'<'}</Text>
