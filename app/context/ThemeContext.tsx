@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import { createContext, useContext, useState, ReactNode } from 'react';
 import { DarkTheme, DefaultTheme, Theme } from '@react-navigation/native';
 
 type ThemeMode = 'light' | 'dark';
@@ -15,20 +15,23 @@ const ThemeContext = createContext<ThemeContextProps>({
   toggleTheme: () => {},
 });
 
+
 export const ThemeProvider = ({ children }: { children: ReactNode }) => {
   const [mode, setMode] = useState<ThemeMode>('light');
 
   const toggleTheme = () => {
-    setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
+    setMode((prevMode) => ((prevMode === 'light') ? 'dark' : 'light'));
   };
 
-  const theme = mode === 'dark' ? DarkTheme : DefaultTheme;
+  const theme = (mode === 'dark') ? DarkTheme : DefaultTheme;
 
+  
   return (
     <ThemeContext.Provider value={{ theme, mode, toggleTheme }}>
       {children}
     </ThemeContext.Provider>
   );
 };
+
 
 export const useThemeContext = () => useContext(ThemeContext);
