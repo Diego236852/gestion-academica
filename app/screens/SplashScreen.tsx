@@ -9,6 +9,11 @@ import Animated, {
 
 import { useNavigation } from '@react-navigation/native';
 
+
+// La imagen a mostrar (el logo)
+const logoImagen = require('@/assets/images/logo.png');
+
+
 // Componente SplashScreen
 export default function SplashScreen() {
   const navigation = useNavigation<any>(); // Tipo relajado para evitar errores de TS
@@ -24,6 +29,7 @@ export default function SplashScreen() {
     };
   });
 
+  
   // Animación al montar
   useEffect(() => {
     opacity.value = withTiming(1, {
@@ -46,16 +52,18 @@ export default function SplashScreen() {
     return () => clearTimeout(timer);
   }, []);
 
+  
   return (
     <View style={styles.container}>
       <Animated.Image
-        source={require('../../assets/images/logo.png')}
+        source={logoImagen}
         style={[styles.logo, animatedStyle]}
         resizeMode="contain"
       />
     </View>
   );
 };
+
 
 // Estilos
 const styles = StyleSheet.create({

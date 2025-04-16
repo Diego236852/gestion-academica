@@ -1,7 +1,8 @@
-import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { RootStackParamList } from '../types/navigation';
+
+// Tipos
+import { RootStackParamList } from '@/app/types/navigation';
 
 type DirectorMainMenuNavigationProp = NativeStackNavigationProp<RootStackParamList, 'DirectorMenu'>;
 
@@ -9,7 +10,9 @@ type Props = {
   navigation: DirectorMainMenuNavigationProp;
 };
 
-const DirectorMainMenu: React.FC<Props> = ({ navigation }) => {
+
+// Componente DirectorMainMenu
+export default function DirectorMainMenu({ navigation } : Readonly<Props>) {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Menú del Director</Text>
@@ -45,8 +48,8 @@ const DirectorMainMenu: React.FC<Props> = ({ navigation }) => {
   );
 };
 
-export default DirectorMainMenu;
 
+// Estilos
 const styles = StyleSheet.create({
   background: {
     flex: 1,

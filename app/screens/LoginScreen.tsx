@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { RootStackParamList } from '../types/navigation'; // Asegúrate de ajustar la ruta según tu estructura
+
+// Tipos
+import { RootStackParamList } from '@/app/types/navigation';
 
 type LoginScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'Login'>;
 
@@ -9,10 +11,18 @@ type Props = {
   navigation: LoginScreenNavigationProp;
 };
 
-const LoginScreen: React.FC<Props> = ({ navigation }) => {
+// La imagen del logo
+const logoImagen = require('@/assets/images/logo.png');
+
+
+// Componente LoginScreen
+export default function LoginScreen({ navigation } : Readonly<Props>) { // Props marcados como readonly para silenciar a TS
   const [username, setUsername] = useState('');
   const [pin, setPin] = useState('');
 
+  
+  // Si la validacion es exitosa, redirigirlo al menu de director;
+  // de lo contrario, pedirle que ingrese sus credenciales
   const handleLogin = () => {
     if (username && pin) {
       navigation.navigate('DirectorMenu');
@@ -21,13 +31,15 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
     }
   };
 
+  
   return (
     <View style={styles.container}>
       <Image
-        source={require('../../assets/images/logo.png')}
+        source={logoImagen}
         style={styles.logo}
         resizeMode="contain"
       />
+      
       <View style={styles.form}>
         <TextInput
           placeholder="Usuario"
@@ -36,6 +48,7 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
           value={username}
           onChangeText={setUsername}
         />
+        
         <TextInput
           placeholder="PIN"
           placeholderTextColor="#999"
@@ -45,6 +58,7 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
           value={pin}
           onChangeText={setPin}
         />
+        
         <TouchableOpacity style={styles.button} onPress={handleLogin}>
           <Text style={styles.buttonText}>Entrar</Text>
         </TouchableOpacity>
@@ -53,9 +67,8 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
   );
 };
 
-export default LoginScreen;
 
-
+// Estilos
 const styles = StyleSheet.create({
   container: {
     flex: 1,

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import {
   View,
   Text,
@@ -7,16 +7,22 @@ import {
   FlatList,
   useWindowDimensions,
 } from 'react-native';
+
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { RootStackParamList } from '../types/navigation';
+
+// Tipos
+import { RootStackParamList } from '@/app/types/navigation';
+
 
 // Componente ClassroomScreen
-const ClassroomScreen = () => {
+export default function ClassroomScreen() {
   const [currentGrade, setCurrentGrade] = useState(0);
 
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const { width, height } = useWindowDimensions();
+  
+  
   const isPortrait = height >= width;
 
   const grades = ['Preescolar', 'Primaria', 'Secundaria'];
@@ -34,19 +40,22 @@ const ClassroomScreen = () => {
     ],
   ];
 
+  // Ir a la siguiente pagina
   const handleNextPage = () => {
     setCurrentGrade((prevGrade) => (prevGrade + 1) % classrooms.length);
   };
 
+  // Ir a la pagina anterior
   const handlePrevPage = () => {
     setCurrentGrade((prevGrade) => (prevGrade - 1 + classrooms.length) % classrooms.length);
   };
 
   const handleClassroomPress = (classroom: string) => {
     navigation.navigate('ClassesAssigned', { classroom });
-
   };
 
+  
+  // Cuantas columnas deberian de mostrarse?
   const getColumns = () => {
     if (isPortrait && width < 400) return 1;
     if (width < 600) return 3;
@@ -58,6 +67,7 @@ const ClassroomScreen = () => {
   const gap = 12;
   const classroomBoxSize = (width - sidePadding * 2 - gap * (columns - 1)) / columns;
 
+  
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -112,8 +122,8 @@ const ClassroomScreen = () => {
   );
 };
 
-export default ClassroomScreen;
 
+// Estilos
 const styles = StyleSheet.create({
   container: {
     flex: 1,

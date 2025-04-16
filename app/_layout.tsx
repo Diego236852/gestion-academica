@@ -1,7 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
 
-import AppNavigator from './navigation/AppNavigator';
+// Componentes
+import AppNavigator from '@/app/navigation/AppNavigator';
 
+
+// El punto de entrada de la app
 export default function Layout() {
   return (
     <>
