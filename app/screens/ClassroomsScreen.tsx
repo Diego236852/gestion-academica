@@ -7,23 +7,31 @@ import {
   FlatList,
   useWindowDimensions,
 } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../types/navigation';
 
 // Componente ClassroomScreen
 const ClassroomScreen = () => {
   const [currentGrade, setCurrentGrade] = useState(0);
-  const [selectedClassrooms, setSelectedClassrooms] = useState<string[]>([]);
 
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const { width, height } = useWindowDimensions();
   const isPortrait = height >= width;
 
-  const grades = ["Preescolar", "Primaria", "Secundaria"];
+  const grades = ['Preescolar', 'Primaria', 'Secundaria'];
 
   const classrooms = [
-    ["1er Nivel A", "2do Nivel B", "3er Nivel C"],
-    ["1er A", "1er B", "1er C", "2do A", "2do B", "2do C", "3er A", "3er B", "3er C",
-     "4to A", "4to B", "4to C", "5to A", "5to B", "5to C", "6to A", "6to B", "6to C"],
-    ["7mo A", "7mo B", "7mo C", "8vo A", "8vo B", "8vo C", "9no A", "9no B", "9no C", 
-     "10mo A", "10mo B", "10mo C", "11mo A", "11mo B", "11mo C"],
+    ['1er Nivel A', '2do Nivel B', '3er Nivel C'],
+    [
+      '1er A', '1er B', '1er C', '2do A', '2do B', '2do C', '3er A', '3er B', '3er C',
+      '4to A', '4to B', '4to C', '5to A', '5to B', '5to C', '6to A', '6to B', '6to C',
+    ],
+    [
+      '7mo A', '7mo B', '7mo C', '8vo A', '8vo B', '8vo C',
+      '9no A', '9no B', '9no C', '10mo A', '10mo B', '10mo C',
+      '11mo A', '11mo B', '11mo C',
+    ],
   ];
 
   const handleNextPage = () => {
@@ -34,23 +42,20 @@ const ClassroomScreen = () => {
     setCurrentGrade((prevGrade) => (prevGrade - 1 + classrooms.length) % classrooms.length);
   };
 
-  const toggleSelection = (classroom: string) => {
-    setSelectedClassrooms((prev) =>
-      prev.includes(classroom)
-        ? prev.filter(item => item !== classroom)
-        : [...prev, classroom]
-    );
+  const handleClassroomPress = (classroom: string) => {
+    navigation.navigate('ClassesAssigned', { classroom });
+
   };
 
   const getColumns = () => {
-    if (width < 350) return 2;
+    if (isPortrait && width < 400) return 1;
     if (width < 600) return 3;
     return 4;
   };
 
   const columns = getColumns();
-  const sidePadding = 20; // espacio a la izquierda y derecha
-  const gap = 12; // espacio entre celdas
+  const sidePadding = 20;
+  const gap = 12;
   const classroomBoxSize = (width - sidePadding * 2 - gap * (columns - 1)) / columns;
 
   return (
@@ -69,29 +74,30 @@ const ClassroomScreen = () => {
           paddingHorizontal: sidePadding,
           justifyContent: isPortrait ? 'center' : 'flex-start',
         }}
-        columnWrapperStyle={{
-          justifyContent: isPortrait ? 'center' : 'space-between',
-          marginBottom: gap,
-        }}
-        renderItem={({ item }) => {
-          const isSelected = selectedClassrooms.includes(item);
-          return (
-            <TouchableOpacity
-              style={[
-                {
-                  width: classroomBoxSize,
-                  height: classroomBoxSize,
-                },
-                styles.classroom,
-                isSelected && styles.classroomSelected,
-              ]}
-              onPress={() => toggleSelection(item)}
-            >
-              <Text style={styles.classroomText}>Grado X</Text>
-              <Text style={styles.classroomText}>{item}</Text>
-            </TouchableOpacity>
-          );
-        }}
+        columnWrapperStyle={
+          columns > 1
+            ? {
+                justifyContent: isPortrait ? 'center' : 'space-between',
+                marginBottom: gap,
+              }
+            : undefined
+        }
+        renderItem={({ item }) => (
+          <TouchableOpacity
+            style={[
+              {
+                width: columns === 1 ? '100%' : classroomBoxSize,
+                height: classroomBoxSize,
+                alignSelf: columns === 1 ? 'center' : 'auto',
+              },
+              styles.classroom,
+            ]}
+            onPress={() => handleClassroomPress(item)}
+          >
+            <Text style={styles.classroomText}>Grado X</Text>
+            <Text style={styles.classroomText}>{item}</Text>
+          </TouchableOpacity>
+        )}
       />
 
       <View style={styles.pagination}>
@@ -112,12 +118,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    padding: 16,
   },
   header: {
     backgroundColor: '#ccc',
-    padding: 10,
-    borderRadius: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 16,
+    width: '100%',
     marginBottom: 10,
   },
   schoolLevel: {
@@ -137,9 +143,6 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  classroomSelected: {
-    backgroundColor: '#999',
   },
   classroomText: {
     fontSize: 14,

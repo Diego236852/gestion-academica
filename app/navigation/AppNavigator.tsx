@@ -1,13 +1,16 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { RootStackParamList } from '../types/navigation';  // Asegúrate de importar el tipo
+import { RootStackParamList } from '../types/navigation';
 
 import SplashScreen from '../screens/SplashScreen';
 import LoginScreen from '../screens/LoginScreen';
 import ClassroomsScreen from '../screens/ClassroomsScreen';
 import DirectorMainMenu from '../screens/DirectorMainMenu';
+import OptionsScreen from '../screens/OptionsScreen';
+import ClassesAssignedScreen from '../screens/ClassesAssignedScreen';
+import ClassDetailScreen from '../screens/ClassDetailScreen';
+import TeachersDataScreen from '../screens/TeachersDataScreen';
 
-// Aplicar el tipo de navegación
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function AppNavigator() {
@@ -17,6 +20,10 @@ export default function AppNavigator() {
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="DirectorMenu" component={DirectorMainMenu} />
       <Stack.Screen name="Classrooms" component={ClassroomsScreen} />
+      <Stack.Screen name="OptionsScreen" component={OptionsScreen} />
+      <Stack.Screen name="ClassesAssigned" component={ClassesAssignedScreen} />
+      <Stack.Screen name="ClassDetails" component={ClassDetailScreen} />
+      <Stack.Screen name="TeachersData" component={TeachersDataScreen} />
     </Stack.Navigator>
   );
 }
