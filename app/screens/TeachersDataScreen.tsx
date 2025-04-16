@@ -119,7 +119,7 @@ export default function TeachersDataScreen () {
       {isClassroomDropdownOpen && (
         <View style={styles.dropdownContainer}>
           {classrooms.map(aula => {
-            const isSelected = selectedClassroom === aula;
+            const isSelected = (selectedClassroom === aula);
             return (
               <TouchableOpacity
                 key={aula}
