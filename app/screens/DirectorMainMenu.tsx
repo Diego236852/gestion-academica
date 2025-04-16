@@ -42,7 +42,7 @@ export default function DirectorMainMenu({ navigation } : Readonly<Props>) {
         style={styles.button}
         onPress={() => navigation.navigate('OptionsScreen')}
       >
-        <Text style={styles.buttonText}>⚙️Opciones</Text>
+        <Text style={styles.buttonText}>{`⚙️ Opciones`}</Text>
       </TouchableOpacity>
     </View>
   );
