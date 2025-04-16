@@ -97,7 +97,7 @@ export default function ClassroomsScreen() {
           }
         }
         
-        // Cada uno de las aulas
+        // Cada una de las aulas
         renderItem={({ item }) => (
           <TouchableOpacity
             style={[
