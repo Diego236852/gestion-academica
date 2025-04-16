@@ -23,7 +23,7 @@ export default function ClassroomsScreen() {
   const { width, height } = useWindowDimensions();
   
   
-  const isPortrait = height >= width;
+  const isPortrait = (height >= width);
 
   // Los grados posibles
   const grades = ['Preescolar', 'Primaria', 'Secundaria'];
@@ -68,7 +68,7 @@ export default function ClassroomsScreen() {
   const columns = getColumns();
   const sidePadding = 20;
   const gap = 12;
-  const classroomBoxSize = (width - sidePadding * 2 - gap * (columns - 1)) / columns;
+  const classroomBoxSize = (width - (sidePadding * 2) - (gap * (columns - 1))) / columns;
 
   
   return (
@@ -102,9 +102,9 @@ export default function ClassroomsScreen() {
           <TouchableOpacity
             style={[
               {
-                width: columns === 1 ? '100%' : classroomBoxSize,
+                width: (columns === 1) ? '100%' : classroomBoxSize,
                 height: classroomBoxSize,
-                alignSelf: columns === 1 ? 'center' : 'auto',
+                alignSelf: (columns === 1) ? 'center' : 'auto',
               },
               styles.classroom,
             ]}
