@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 // Tipos
-import { RootStackParamList } from '@/app/types/navigation';
+import { RootStackParamList } from '@/types/navigation';
 
 type DirectorMainMenuNavigationProp = NativeStackNavigationProp<RootStackParamList, 'DirectorMenu'>;
 

@@ -3,7 +3,7 @@ import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image } from 'reac
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 // Tipos
-import { RootStackParamList } from '@/app/types/navigation';
+import { RootStackParamList } from '@/types/navigation';
 
 type LoginScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'Login'>;
 

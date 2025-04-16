@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, FlatList } from 'react-native';
 import { RouteProp, useRoute } from '@react-navigation/native';
 
 // Tipos
-import { RootStackParamList } from '@/app/types/navigation';
+import { RootStackParamList } from '@/types/navigation';
 
 // Definimos el tipo para obtener los parámetros de la ruta "ClassDetails"
 type ClassDetailRouteProp = RouteProp<RootStackParamList, 'ClassDetails'>;

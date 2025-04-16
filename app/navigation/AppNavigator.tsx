@@ -1,7 +1,7 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 // Tipos
-import { RootStackParamList } from '@/app/types/navigation';
+import { RootStackParamList } from '@/types/navigation';
 
 // Componentes
 import SplashScreen from '@/app/screens/SplashScreen';

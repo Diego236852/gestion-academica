@@ -12,7 +12,7 @@ import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 // Tipos
-import { RootStackParamList } from '@/app/types/navigation';
+import { RootStackParamList } from '@/types/navigation';
 
 
 // Componente ClassroomsScreen

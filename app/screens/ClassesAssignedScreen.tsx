@@ -3,7 +3,7 @@ import { RouteProp, useRoute, useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 // Tipos
-import { RootStackParamList } from '@/app/types/navigation';
+import { RootStackParamList } from '@/types/navigation';
 
 // Definimos el tipo para obtener los parámetros de la ruta
 type ClassesAssignedRouteProp = RouteProp<RootStackParamList, 'ClassesAssigned'>;
