@@ -8,6 +8,7 @@ import {
   useWindowDimensions,
 } from 'react-native';
 
+// Componente ClassroomScreen
 const ClassroomScreen = () => {
   const [currentGrade, setCurrentGrade] = useState(0);
   const [selectedClassrooms, setSelectedClassrooms] = useState<string[]>([]);

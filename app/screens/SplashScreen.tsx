@@ -10,7 +10,7 @@ import Animated, {
 import { useNavigation } from '@react-navigation/native';
 
 // Componente SplashScreen
-const SplashScreen = () => {
+export default function SplashScreen() {
   const navigation = useNavigation<any>(); // Tipo relajado para evitar errores de TS
 
   const opacity = useSharedValue(0);
@@ -56,8 +56,6 @@ const SplashScreen = () => {
     </View>
   );
 };
-
-export default SplashScreen;
 
 // Estilos
 const styles = StyleSheet.create({
