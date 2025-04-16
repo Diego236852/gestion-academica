@@ -87,8 +87,10 @@ export default function TeachersDataScreen () {
   
   return (
     <View style={styles.container}>
+      {/* Cabecera */}
       <Text style={styles.title}>Matricular Docente</Text>
       
+      {/* Caja de texto para el numero de maestro */}
       <Text style={styles.subtitle}>Ingrese el número de usuario del docente:</Text>
       <TextInput
         style={styles.input}
@@ -98,13 +100,14 @@ export default function TeachersDataScreen () {
         keyboardType="numeric"
       />
 
+      {/* Un dropdown para seleccionar el aula */}
       <Text style={styles.subtitle}>Seleccione un aula a asignar:</Text>
       <TouchableOpacity
         style={styles.dropdownButton}
         onPress={() => setIsClassroomDropdownOpen(prev => !prev)}
       >
         <Text style={styles.dropdownButtonText}>
-          {selectedClassroom ? selectedClassroom : 'Seleccione un aula'}
+          {selectedClassroom || 'Seleccione un aula'}
         </Text>
         
         <Text style={styles.dropdownArrow}>
@@ -112,7 +115,7 @@ export default function TeachersDataScreen () {
         </Text>
       </TouchableOpacity>
       
-      {/* Todas las aulas */}
+      {/* Todas las aulas, contenidas dentro del dropdown */}
       {isClassroomDropdownOpen && (
         <View style={styles.dropdownContainer}>
           {classrooms.map(aula => {
