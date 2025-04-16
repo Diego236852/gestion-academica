@@ -15,8 +15,8 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '@/app/types/navigation';
 
 
-// Componente ClassroomScreen
-export default function ClassroomScreen() {
+// Componente ClassroomsScreen
+export default function ClassroomsScreen() {
   const [currentGrade, setCurrentGrade] = useState(0);
 
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
