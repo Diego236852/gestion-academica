@@ -11,11 +11,12 @@ import {
 
 // Componente TeachersDataScreen
 export default function TeachersDataScreen () {
-  const [teacherNumber, setTeacherNumber] = useState('');
-  const [selectedClassroom, setSelectedClassroom] = useState('');
-  const [selectedSubjects, setSelectedSubjects] = useState<string[]>([]);
+  const [teacherNumber, setTeacherNumber] = useState(''); // Numero del maestro
+  const [selectedClassroom, setSelectedClassroom] = useState(''); // La clase seleccionada
+  const [selectedSubjects, setSelectedSubjects] = useState<string[]>([]); // Las asignaturas seleccionadas
   const [isClassroomDropdownOpen, setIsClassroomDropdownOpen] = useState(false);
 
+  
   // Lista completa de aulas disponibles (placeholder)
   const classrooms = [
     '1er Nivel A',
@@ -44,7 +45,9 @@ export default function TeachersDataScreen () {
     'Música',
   ];
 
+  
   // Alterna la selección de una asignatura
+  // (Si esta dentro de los seleccionados, lo quitamos; de lo contrario, lo agregamos)
   const toggleSubject = (subject: string) => {
     if (selectedSubjects.includes(subject)) {
       setSelectedSubjects(selectedSubjects.filter(s => s !== subject));
@@ -67,11 +70,13 @@ export default function TeachersDataScreen () {
       Alert.alert('Error', 'Por favor seleccione al menos una asignatura.');
       return;
     }
+    
     // Simulación del envío de datos al backend
     Alert.alert(
       'Matriculación Exitosa',
       `Docente número: ${teacherNumber}\nAula: ${selectedClassroom}\nAsignaturas: ${selectedSubjects.join(', ')}`
     );
+    
     // Reiniciar formulario (opcional)
     setTeacherNumber('');
     setSelectedClassroom('');
@@ -79,6 +84,7 @@ export default function TeachersDataScreen () {
     setIsClassroomDropdownOpen(false);
   };
 
+  
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Matricular Docente</Text>
@@ -100,10 +106,13 @@ export default function TeachersDataScreen () {
         <Text style={styles.dropdownButtonText}>
           {selectedClassroom ? selectedClassroom : 'Seleccione un aula'}
         </Text>
+        
         <Text style={styles.dropdownArrow}>
           {isClassroomDropdownOpen ? '▲' : '▼'}
         </Text>
       </TouchableOpacity>
+      
+      {/* Todas las aulas */}
       {isClassroomDropdownOpen && (
         <View style={styles.dropdownContainer}>
           {classrooms.map(aula => {
@@ -163,6 +172,7 @@ export default function TeachersDataScreen () {
         </>
       ) : null}
 
+      {/* Boton para realizar la matricula */}
       <TouchableOpacity style={styles.enrollButton} onPress={handleEnroll}>
         <Text style={styles.enrollButtonText}>Matricular</Text>
       </TouchableOpacity>
