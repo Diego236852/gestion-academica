@@ -1,0 +1,76 @@
+{
+  "apiRoutes": [],
+  "htmlRoutes": [
+    {
+      "file": "./(tabs)/index.tsx",
+      "page": "/(tabs)/index",
+      "namedRegex": "^(?:/\\(tabs\\))?(?:/)?$",
+      "routeKeys": {}
+    },
+    {
+      "file": "./index.tsx",
+      "page": "/index",
+      "namedRegex": "^/(?:/)?$",
+      "routeKeys": {}
+    },
+    {
+      "file": "./(tabs)/explore.tsx",
+      "page": "/(tabs)/explore",
+      "namedRegex": "^(?:/\\(tabs\\))?/explore(?:/)?$",
+      "routeKeys": {}
+    },
+    {
+      "file": "expo-router/build/views/Sitemap.js",
+      "page": "/_sitemap",
+      "namedRegex": "^/_sitemap(?:/)?$",
+      "routeKeys": {},
+      "generated": true
+    },
+    {
+      "file": "./types/navigation.ts",
+      "page": "/types/navigation",
+      "namedRegex": "^/types/navigation(?:/)?$",
+      "routeKeys": {}
+    },
+    {
+      "file": "./screens/LoginScreen.tsx",
+      "page": "/screens/LoginScreen",
+      "namedRegex": "^/screens/LoginScreen(?:/)?$",
+      "routeKeys": {}
+    },
+    {
+      "file": "./screens/SplashScreen.tsx",
+      "page": "/screens/SplashScreen",
+      "namedRegex": "^/screens/SplashScreen(?:/)?$",
+      "routeKeys": {}
+    },
+    {
+      "file": "./navigation/AppNavigator.tsx",
+      "page": "/navigation/AppNavigator",
+      "namedRegex": "^/navigation/AppNavigator(?:/)?$",
+      "routeKeys": {}
+    },
+    {
+      "file": "./screens/DirectorMainMenu.tsx",
+      "page": "/screens/DirectorMainMenu",
+      "namedRegex": "^/screens/DirectorMainMenu(?:/)?$",
+      "routeKeys": {}
+    },
+    {
+      "file": "./screens/ClassroomsScreen.tsx",
+      "page": "/screens/ClassroomsScreen",
+      "namedRegex": "^/screens/ClassroomsScreen(?:/)?$",
+      "routeKeys": {}
+    }
+  ],
+  "notFoundRoutes": [
+    {
+      "file": "./+not-found.tsx",
+      "page": "/+not-found",
+      "namedRegex": "^(?:/(?<notfound>.+?))?(?:/)?$",
+      "routeKeys": {
+        "notfound": "not-found"
+      }
+    }
+  ]
+}
