@@ -1,12 +1,15 @@
-import React from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
 import { RouteProp, useRoute } from '@react-navigation/native';
-import { RootStackParamList } from '../types/navigation';
+
+// Tipos
+import { RootStackParamList } from '@/app/types/navigation';
 
 // Definimos el tipo para obtener los parámetros de la ruta "ClassDetails"
 type ClassDetailRouteProp = RouteProp<RootStackParamList, 'ClassDetails'>;
 
-const ClassDetailScreen = () => {
+
+// Componente ClassDetailScreen
+export default function ClassDetailScreen() {
   const route = useRoute<ClassDetailRouteProp>();
   const { classroom, className } = route.params;
 
@@ -18,6 +21,7 @@ const ClassDetailScreen = () => {
     'Indicador 4: Colabora efectivamente con sus compañeros',
   ];
 
+  
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Detalle de la Clase</Text>
@@ -39,8 +43,8 @@ const ClassDetailScreen = () => {
   );
 };
 
-export default ClassDetailScreen;
 
+// Estilos
 const styles = StyleSheet.create({
   container: {
     flex: 1,

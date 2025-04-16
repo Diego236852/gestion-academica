@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { 
   View, 
   Text, 
@@ -8,7 +8,9 @@ import {
   Alert 
 } from 'react-native';
 
-const TeachersDataScreen = () => {
+
+// Componente TeachersDataScreen
+export default function TeachersDataScreen () {
   const [teacherNumber, setTeacherNumber] = useState('');
   const [selectedClassroom, setSelectedClassroom] = useState('');
   const [selectedSubjects, setSelectedSubjects] = useState<string[]>([]);
@@ -168,8 +170,8 @@ const TeachersDataScreen = () => {
   );
 };
 
-export default TeachersDataScreen;
 
+// Estilos
 const styles = StyleSheet.create({
   container: {
     flex: 1,

@@ -1,17 +1,21 @@
-import React from 'react';
 import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 import { RouteProp, useRoute, useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { RootStackParamList } from '../types/navigation';
+
+// Tipos
+import { RootStackParamList } from '@/app/types/navigation';
 
 // Definimos el tipo para obtener los parámetros de la ruta
 type ClassesAssignedRouteProp = RouteProp<RootStackParamList, 'ClassesAssigned'>;
 
-const ClassesAssignedScreen = () => {
+
+// Componente ClassesAssignedScreen
+export default function ClassesAssignedScreen() {
   const route = useRoute<ClassesAssignedRouteProp>();
   const { classroom } = route.params;
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
+  // Las clases o asignaturas
   const sampleClasses = [
     'Matemáticas',
     'Lengua y Literatura',
@@ -25,11 +29,14 @@ const ClassesAssignedScreen = () => {
     'Música',
   ];
 
+  
   // Al tocar una clase, navegamos a la pantalla ClassDetails
+  // (Mostrandonos detalles de la clase o asignatura)
   const handleClassPress = (className: string) => {
     navigation.navigate('ClassDetails', { classroom, className });
   };
 
+  
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Aula Seleccionada:</Text>
@@ -53,8 +60,8 @@ const ClassesAssignedScreen = () => {
   );
 };
 
-export default ClassesAssignedScreen;
 
+// Estilos
 const styles = StyleSheet.create({
   container: {
     flex: 1,

@@ -1,12 +1,16 @@
-import React from 'react';
 import { View, Text, StyleSheet, Switch } from 'react-native';
-import { useTheme } from '@react-navigation/native'; // importamos el hook del tema
-import { useThemeContext } from '../context/ThemeContext';
+import { useTheme } from '@react-navigation/native'; // Importamos el hook del tema
 
-const OptionsScreen = () => {
+// Contexto para el tema claro/oscuro
+import { useThemeContext } from '@/app/context/ThemeContext';
+
+
+// Componente OptionsScreen
+export default function OptionsScreen() {
   const { mode, toggleTheme } = useThemeContext();
-  const { colors } = useTheme(); // obtenemos colores del tema actual
+  const { colors } = useTheme(); // Obtenemos colores del tema actual
 
+  
   return (
     <View style={[styles.container, { backgroundColor: colors.background }]}>
       <Text style={[styles.title, { color: colors.text }]}>Pantalla de Opciones</Text>
@@ -19,8 +23,8 @@ const OptionsScreen = () => {
   );
 };
 
-export default OptionsScreen;
 
+// Estilos
 const styles = StyleSheet.create({
   container: {
     flex: 1,
