@@ -1,21 +1,10 @@
-// app/index.tsx
-import { View, Text, StyleSheet } from 'react-native';
+// Componentes
+import SplashScreen from '@/components/screens/SplashScreen';
 
+
+// Lo que se carga al abrir la aplicacion
 export default function Home() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Bienvenido a Gestión Académica</Text>
-    </View>
+    <SplashScreen />
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  text: {
-    fontSize: 20,
-  },
-});

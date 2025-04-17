@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, Switch } from 'react-native';
 import { useTheme } from '@react-navigation/native'; // Importamos el hook del tema
 
 // Contexto para el tema claro/oscuro
-import { useThemeContext } from '@/app/context/ThemeContext';
+import { useThemeContext } from '@/components/context/ThemeContext';
 
 
 // Componente OptionsScreen

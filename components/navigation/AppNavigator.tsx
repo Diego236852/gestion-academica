@@ -1,17 +1,17 @@
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createNativeStackNavigator } from 'expo-router-stack';
 
 // Tipos
 import { RootStackParamList } from '@/types/navigation';
 
 // Componentes
-import SplashScreen from '@/app/screens/SplashScreen';
-import LoginScreen from '@/app/screens/LoginScreen';
-import ClassroomsScreen from '@/app/screens/ClassroomsScreen';
-import DirectorMainMenu from '@/app/screens/DirectorMainMenu';
-import OptionsScreen from '@/app/screens/OptionsScreen';
-import ClassesAssignedScreen from '@/app/screens/ClassesAssignedScreen';
-import ClassDetailScreen from '@/app/screens/ClassDetailScreen';
-import TeachersDataScreen from '@/app/screens/TeachersDataScreen';
+import SplashScreen from '@/components/screens/SplashScreen';
+import LoginScreen from '@/components/screens/LoginScreen';
+import ClassroomsScreen from '@/components/screens/ClassroomsScreen';
+import DirectorMainMenu from '@/components/screens/DirectorMainMenu';
+import OptionsScreen from '@/components/screens/OptionsScreen';
+import ClassesAssignedScreen from '@/components/screens/ClassesAssignedScreen';
+import ClassDetailScreen from '@/components/screens/ClassDetailScreen';
+import TeachersDataScreen from '@/components/screens/TeachersDataScreen';
 
 // Crear el stack
 const Stack = createNativeStackNavigator<RootStackParamList>();

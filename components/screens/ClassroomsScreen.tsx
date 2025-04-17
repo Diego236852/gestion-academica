@@ -8,6 +8,8 @@ import {
   useWindowDimensions,
 } from 'react-native';
 
+import { useRouter } from 'expo-router';
+
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
@@ -17,6 +19,7 @@ import { RootStackParamList } from '@/types/navigation';
 
 // Componente ClassroomsScreen
 export default function ClassroomsScreen() {
+  const router = useRouter();
   const [currentGrade, setCurrentGrade] = useState(0);
 
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
@@ -54,7 +57,10 @@ export default function ClassroomsScreen() {
 
   // Ir al aula seleccionada
   const handleClassroomPress = (classroom: string) => {
-    navigation.navigate('ClassesAssigned', { classroom });
+    router.navigate({
+      pathname: '/aula-seleccionada', 
+      params: { classroom: classroom }
+    });
   };
 
   

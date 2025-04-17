@@ -7,7 +7,7 @@ import Animated, {
   Easing,
 } from 'react-native-reanimated';
 
-import { useNavigation } from '@react-navigation/native';
+import { useRouter } from 'expo-router';
 
 
 // La imagen a mostrar (el logo)
@@ -16,7 +16,7 @@ const logoImagen = require('@/assets/images/logo.png');
 
 // Componente SplashScreen
 export default function SplashScreen() {
-  const navigation = useNavigation<any>(); // Tipo relajado para evitar errores de TS
+  const router = useRouter();
 
   const opacity = useSharedValue(0);
   const scale = useSharedValue(0.8);
@@ -46,7 +46,7 @@ export default function SplashScreen() {
   // Navegar a Login luego de 2 segundos
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigation.navigate('Login');
+      router.navigate('/login');
     }, 2000);
 
     return () => clearTimeout(timer);

@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import AppNavigator from './app/navigation/AppNavigator';
-import { ThemeProvider, useThemeContext } from './app/context/ThemeContext';
+import AppNavigator from './components/navigation/AppNavigator';
+import { ThemeProvider, useThemeContext } from './components/context/ThemeContext';
 
 const AppContent = () => {
   const { theme } = useThemeContext();
